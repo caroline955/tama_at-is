@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAMT Pastry - Artisan Cakes & Pastries</title>
+    <link rel="stylesheet" href="style-menu-figma.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #f5f1ed;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: #8b7355;
+        }
+
+        .login-btn {
+            background-color: #8b7355;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #6d5a47;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+            url('pic/home.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 50px;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 500px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            background-color: #8b7355;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #6d5a47;
+        }
+
+        .hero-slider {
+            position: absolute;
+            bottom: 30px;
+            right: 50px;
+            width: 60px;
+            height: 4px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .slider-progress {
+            height: 100%;
+            width: 40%;
+            background-color: white;
+            border-radius: 2px;
+            animation: slide 8s infinite;
+        }
+
+        @keyframes slide {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* About Section */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 80px 50px;
+            background-color: #fafaf8;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #8b7355;
+            font-weight: 400;
+        }
+
+        .about-content h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .about-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: url('pic/rắc bột.jpg') center/cover;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .hero {
+                height: 400px;
+                padding: 0 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                gap: 30px;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+        }
+/* Cart Badge Counter */
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 7px;
+    font-size: 11px;
+    font-weight: bold;
+    min-width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    animation: none;
+}
+
+.cart-badge.updated {
+    animation: bounceIn 0.5s ease;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.5); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.cart-badge.hidden {
+    display: none;
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+<nav>
+    <div class="logo">HAMT PASTRY</div>
+    <ul class="nav-links">
+        <li><a href="home web.html">HOME</a></li>
+        <li><a href="products.html">PRODUCT</a></li>
+        <li><a href="#how-to-buy">HOW TO BUY</a></li>
+        <li><a href="#membership">MEMBERSHIP</a></li>
+        <li><a href="#inquiry">INQUIRY</a></li>
+        <li>
+            <a href="cart.html" style="position: relative;">
+                CART
+                <span class="cart-badge" id="cart-badge">0</span>
+            </a>
+        </li>
+        <li><button class="login-btn">LOG IN</button></li>
+    </ul>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Every cake tells a little story, sharing love through each soft and creamy layer.</h1>
+            <button class="cta-button" onclick="window.location.href='products.html'">VIEW OUR PRODUCTS</button>
+        </div>
+        <div class="hero-slider">
+            <div class="slider-progress"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>About us</h2>
+            <h3>Welcome to HAMT Pastry</h3>
+            <p>Over the years, Hamt has grown from a small, humble bakery into a beloved brand trusted by many customers. Throughout this journey, we have stayed true to our passion for crafting cakes that are not only delicious but also carry a unique style, while constantly innovating to meet the diverse tastes of our guests.</p>
+            <p>At Hamt, we aim to bring you joy in every detail – from the balanced flavors, the elegant designs, to the thoughtful service.</p>
+            <p>What makes us most proud is not just the growth in our customer base or the reputation we have built, but the dedication, love, and passion of our bakers. We believe that every wonderful cake is created from a happy heart, and this is the value that Hamt will always cherish.</p>
+        </div>
+        <div class="about-image"></div>
+    </section>
+    
+<!-- MENU Section -->
+<section class="menu" id="product">
+    <div class="menu-header">
+        <h2>MENU</h2>
+    </div>
+    
+    <div class="menu-grid">
+        <!-- Product 1 -->
+        <div class="menu-item">
+            <div class="menu-item-image">
+                <img src="pic/berry.jpg" alt="Berry Fruit Vanilla">
+            </div>
+            <h3>BERRY FRUIT VANILLA</h3>
+            <p class="price">625.000VND</p>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="menu-item">
+            <div class="menu-item-image">
+                <img src="pic/guava.png" alt="Pink Guava">
+            </div>
+            <h3>PINK GUAVA</h3>
+            <p class="price">625.000VND</p>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="menu-item">
+            <div class="menu-item-image">
+                <img src="pic/mango chese.png" alt="Passion Mango Cheese">
+            </div>
+            <h3>PASSION MANGO CHEESE</h3>
+            <p class="price">625.000VND</p>
+        </div>
+    </div>
+
+    <div class="menu-footer">
+        <button class="more-btn" onclick="window.location.href='products.html'">MORE <span>→</span></button>
+    </div>
+</section>
+
+<!-- NEW ARRIVALS Section -->
+<section class="new-arrivals" id="new-arrivals">
+    <div class="arrivals-header">
+        <h2>NEW ARRIVALS</h2>
+    </div>
+
+    <div class="arrivals-container">
+        <!-- Arrival 1 -->
+        <div class="arrival-item arrival-left">
+            <div class="arrival-image">
+               <img src="pic/blink blink pop.png" alt="Blink Blink Pop">
+            </div>
+            <div class="arrival-content">
+                <h3>BLINK BLINK POP</h3>
+                <p class="product-subtitle">MANGO CHEESE PASSION FRUIT ENTREMET</p>
+                <p class="product-description">Cool and light sweet from mango and passion fruit</p>
+            </div>
+        </div>
+
+        <!-- Arrival 2 -->
+        <div class="arrival-item arrival-right">
+            <div class="arrival-content">
+                <h3>SHINING STAR</h3>
+                <p class="product-subtitle">ENTERMET TIRAMISU CAKE</p>
+                <p class="product-description">Aromatic tiramisu and coffee caramel filling</p>
+            </div>
+            <div class="arrival-image">
+                <img src="pic/shining star.png" alt="Shining Star">
+            </div>
+        </div>
+
+        <!-- Arrival 3 -->
+        <div class="arrival-item arrival-left">
+            <div class="arrival-image">
+                <img src="pic/moonie roar.png" alt="Moonie Roar">
+            </div>
+            <div class="arrival-content">
+                <h3>MOONIE ROAR</h3>
+                <p class="product-subtitle">MATCHA CAKE</p>
+                <p class="product-description">Fresh Matcha flavor</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="arrivals-footer">
+        <button class="view-more-btn" onclick="window.location.href='collection.html'">VIEW MORE</button>
+    </div>
+</section>
+
+<!-- CONTACT/FOOTER Section -->
+<footer class="contact-footer" id="contact">
+    <div class="footer-container">
+        <!-- Left Side: Company Name & Social Media -->
+        <div class="footer-left">
+            <h3 class="footer-brand">Hamt Pastry</h3>
+            <div class="social-media">
+                <a href="https://facebook.com" target="_blank" class="social-icon" title="Facebook">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="social-icon" title="LinkedIn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+                    </svg>
+                </a>
+                <a href="https://youtube.com" target="_blank" class="social-icon" title="YouTube">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="social-icon" title="Instagram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m0 2.25c5.385 0 9.75 4.365 9.75 9.75s-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12 6.615 2.25 12 2.25m3.662-1.162a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-7.162 1.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9m0 1.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Right Side: Contact Information -->
+        <div class="footer-right">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span>68 Van Cao, Ba Dinh, Ha Noi</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <span>hamt.pastry@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <span>0982762656</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+// Update Cart Badge Counter
+function updateCartBadge() {
+    const badge = document.getElementById('cart-badge');
+    if (!badge) return;
+    
+    const cart = localStorage.getItem('cart');
+    const cartArray = cart ? JSON.parse(cart) : [];
+    const totalItems = cartArray.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    
+    badge.textContent = totalItems;
+    
+    if (totalItems > 0) {
+        badge.classList.remove('hidden');
+        badge.classList.add('updated');
+        setTimeout(() => badge.classList.remove('updated'), 500);
+    } else {
+        badge.classList.add('hidden');
+    }
+}
+
+// Initialize cart badge on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateCartBadge();
+});
+</script>
+</body>
+</html>

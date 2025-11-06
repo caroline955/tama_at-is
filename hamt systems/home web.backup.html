@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAMT Pastry - Artisan Cakes & Pastries</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #f5f1ed;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: #8b7355;
+        }
+
+        .login-btn {
+            background-color: #8b7355;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #6d5a47;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1200&h=600&fit=crop') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 50px;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 500px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            background-color: #8b7355;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #6d5a47;
+        }
+
+        .hero-slider {
+            position: absolute;
+            bottom: 30px;
+            right: 50px;
+            width: 60px;
+            height: 4px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .slider-progress {
+            height: 100%;
+            width: 40%;
+            background-color: white;
+            border-radius: 2px;
+            animation: slide 8s infinite;
+        }
+
+        @keyframes slide {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* About Section */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 80px 50px;
+            background-color: #fafaf8;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #8b7355;
+            font-weight: 400;
+        }
+
+        .about-content h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .about-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&h=400&fit=crop') center/cover;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .hero {
+                height: 400px;
+                padding: 0 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                gap: 30px;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">HAMT PASTRY</div>
+        <ul class="nav-links">
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#product">PRODUCT</a></li>
+            <li><a href="#how-to-buy">HOW TO BUY</a></li>
+            <li><a href="#membership">MEMBERSHIP</a></li>
+            <li><a href="#inquiry">INQUIRY</a></li>
+            <li><a href="#cart">CART</a></li>
+            <li><button class="login-btn">LOG IN</button></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Every cake tells a little story, sharing love through each soft and creamy layer.</h1>
+            <button class="cta-button">VIEW OUR PRODUCTS</button>
+        </div>
+        <div class="hero-slider">
+            <div class="slider-progress"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>About us</h2>
+            <h3>Welcome to HAMT Pastry</h3>
+            <p>Over the years, Hamt has grown from a small, humble bakery into a beloved brand trusted by many customers. Throughout this journey, we have stayed true to our passion for crafting cakes that are not only delicious but also carry a unique style, while constantly innovating to meet the diverse tastes of our guests.</p>
+            <p>At Hamt, we aim to bring you joy in every detail – from the balanced flavors, the elegant designs, to the thoughtful service.</p>
+            <p>What makes us most proud is not just the growth in our customer base or the reputation we have built, but the dedication, love, and passion of our bakers. We believe that every wonderful cake is created from a happy heart, and this is the value that Hamt will always cherish.</p>
+        </div>
+        <div class="about-image"></div>
+    </section>
+    
+<!-- MENU Section -->
+<section class="menu" id="product">
+    <div class="menu-header">
+        <h2>MENU</h2>
+    </div>
+    
+    <div class="menu-grid">
+        <!-- Product 1 -->
+        <div class="menu-item">
+            <div class="menu-item-image">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&h=300&fit=crop" alt="Berry Fruit Vanilla">
+            </div>
+            <h3>BERRY FRUIT VANILLA</h3>
+            <p class="price">625.000VND</p>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="menu-item">
+            <div class="menu-item-image">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&h=300&fit=crop" alt="Pink Guava">
+            </div>
+            <h3>PINK GUAVA</h3>
+            <p class="price">625.000VND</p>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="menu-item">
+            <div class="menu-item-image">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&h=300&fit=crop" alt="Passion Mango Cheese">
+            </div>
+            <h3>PASSION MANGO CHEESE</h3>
+            <p class="price">625.000VND</p>
+        </div>
+    </div>
+
+    <div class="menu-footer">
+        <button class="more-btn">MORE <span>→</span></button>
+    </div>
+</section>
+
+<!-- NEW ARRIVALS Section -->
+<section class="new-arrivals" id="new-arrivals">
+    <div class="arrivals-header">
+        <h2>NEW ARRIVALS</h2>
+    </div>
+
+    <div class="arrivals-container">
+        <!-- Arrival 1 -->
+        <div class="arrival-item arrival-left">
+            <div class="arrival-image">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" alt="Blink Blink Pop">
+            </div>
+            <div class="arrival-content">
+                <h3>BLINK BLINK POP</h3>
+                <p class="product-subtitle">MANGO CHEESE PASSION FRUIT ENTREMET</p>
+                <p class="product-description">Cool and light sweet from mango and passion fruit</p>
+            </div>
+        </div>
+
+        <!-- Arrival 2 -->
+        <div class="arrival-item arrival-right">
+            <div class="arrival-content">
+                <h3>SHINING STAR</h3>
+                <p class="product-subtitle">ENTERMET TIRAMISU CAKE</p>
+                <p class="product-description">Aromatic tiramisu and coffee caramel filling</p>
+            </div>
+            <div class="arrival-image">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" alt="Shining Star">
+            </div>
+        </div>
+
+        <!-- Arrival 3 -->
+        <div class="arrival-item arrival-left">
+            <div class="arrival-image">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" alt="Moonie Roar">
+            </div>
+            <div class="arrival-content">
+                <h3>MOONIE ROAR</h3>
+                <p class="product-subtitle">MATCHA CAKE</p>
+                <p class="product-description">Fresh Matcha flavor</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="arrivals-footer">
+        <button class="view-more-btn">VIEW MORE</button>
+    </div>
+</section>
+</body>
+</html>

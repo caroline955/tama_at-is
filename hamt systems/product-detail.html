@@ -1,0 +1,815 @@
+﻿<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=UTF-8>
+    <meta name=viewport content=width=device-width, initial-scale=1.0>
+    <title>Product Detail - HAMT Pastry</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafaf8;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #f5f1ed;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: #8b7355;
+        }
+
+        .nav-links a.active {
+            color: #8b7355;
+            font-weight: 700;
+            border-bottom: 3px solid #8b7355;
+            padding-bottom: 5px;
+        }
+
+        .login-btn {
+            background-color: #8b7355;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #6d5a47;
+        }
+
+        /* Product Detail Section */
+        .product-detail-section {
+            padding: 60px 50px;
+            background-color: #fafaf8;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .product-image-wrapper {
+            background-color: #d4c4b0;
+            padding: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        .product-image-wrapper img {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .product-subtitle {
+            font-size: 14px;
+            color: #999;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #8b7355;
+            letter-spacing: 0.5px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .product-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .product-description li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .product-description li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #8b7355;
+            font-weight: bold;
+        }
+
+ .add-to-cart-btn {
+ background-color: #8b7355;
+ color: white;
+ padding: 15px 50px;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+ font-size: 14px;
+ font-weight: 600;
+ letter-spacing: 1px;
+ text-transform: uppercase;
+ transition: background-color 0.3s ease;
+ align-self: flex-start;
+ margin-top: 20px;
+ }
+
+ .add-to-cart-btn:hover {
+ background-color: #6d5a47;
+ }
+
+ /* Footer */
+ .contact-footer {
+ background-color: #d4c4b0;
+ padding: 40px 50px;
+ margin-top: 60px;
+ }
+
+ .footer-container {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 60px;
+ align-items: flex-start;
+ max-width: 1200px;
+ margin: 0 auto;
+ }
+
+ .footer-left {
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+ }
+
+ .footer-brand {
+ font-size: 18px;
+ font-weight: 700;
+ color: #333;
+ letter-spacing: 1px;
+ }
+
+ .social-media {
+ display: flex;
+ gap: 15px;
+ justify-content: flex-start;
+ }
+
+ .social-icon {
+ width: 24px;
+ height: 24px;
+ color: #333;
+ transition: color 0.3s ease;
+ cursor: pointer;
+ }
+
+ .social-icon:hover {
+ color: #8b7355;
+ }
+
+ .footer-right {
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+ }
+
+ .contact-info {
+ display: flex;
+ flex-direction: column;
+ gap: 15px;
+ }
+
+ .contact-item {
+ display: flex;
+ gap: 15px;
+ align-items: flex-start;
+ font-size: 14px;
+ color: #333;
+ line-height: 1.5;
+ }
+
+ .contact-icon {
+ flex-shrink: 0;
+ width: 20px;
+ height: 20px;
+ color: #8b7355;
+ }
+
+ @media (max-width: 768px) {
+ nav {
+ padding: 20px;
+ flex-direction: column;
+ gap: 20px;
+ }
+
+ .nav-links {
+ flex-wrap: wrap;
+ gap: 15px;
+ justify-content: center;
+ }
+
+ .product-detail-section {
+ padding: 40px 20px;
+ }
+
+ .product-detail-container {
+ grid-template-columns: 1fr;
+ gap: 30px;
+ }
+
+ .product-title {
+ font-size: 24px;
+ }
+
+ .product-price {
+ font-size: 20px;
+ }
+
+ .footer-container {
+ grid-template-columns: 1fr;
+ gap: 30px;
+ }
+
+ .contact-footer {
+ padding: 30px 20px;
+ }
+ }
+ /* Toast Notification */
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border-left: 4px solid #8b7355;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 20px;
+    min-width: 350px;
+    max-width: 400px;
+    z-index: 9999;
+    transform: translateX(450px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.toast-notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast-notification.hide {
+    transform: translateX(450px);
+    opacity: 0;
+}
+
+.toast-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.toast-icon {
+    width: 24px;
+    height: 24px;
+    background-color: #27ae60;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.toast-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    flex: 1;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.toast-close:hover {
+    color: #333;
+}
+
+.toast-body {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.toast-product-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    object-fit: cover;
+    background-color: #f5f5f5;
+}
+
+.toast-product-info {
+    flex: 1;
+}
+
+.toast-product-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.toast-product-price {
+    font-size: 13px;
+    color: #8b7355;
+    font-weight: 500;
+}
+
+.toast-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.toast-btn {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.toast-btn-primary {
+    background-color: #8b7355;
+    color: white;
+}
+
+.toast-btn-primary:hover {
+    background-color: #6d5a47;
+}
+
+.toast-btn-secondary {
+    background-color: transparent;
+    color: #8b7355;
+    border: 1px solid #8b7355;
+}
+
+.toast-btn-secondary:hover {
+    background-color: #f5f1ed;
+}
+
+/* Button State Animation */
+.add-to-cart-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.add-to-cart-btn.loading {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.add-to-cart-btn.loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+    to { transform: rotate(360deg); }
+}
+
+.add-to-cart-btn.success {
+    background-color: #27ae60;
+}
+
+/* Responsive Toast */
+@media (max-width: 768px) {
+    .toast-notification {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+        max-width: none;
+        transform: translateY(-150%);
+    }
+    
+    .toast-notification.show {
+        transform: translateY(0);
+    }
+    
+    .toast-notification.hide {
+        transform: translateY(-150%);
+    }
+}
+ </style>
+</head>
+<body>
+ <nav>
+<div class="logo" onclick="window.location.href='home web.html'">
+HAMT PASTRY
+</div>
+ <ul class=nav-links>
+ <li><a href=home web.html#home>HOME</a></li>
+ <li><a href=products.html class=active>PRODUCT</a></li>
+ <li><a href=#how-to-buy>HOW TO BUY</a></li>
+ <li><a href=#membership>MEMBERSHIP</a></li>
+ <li><a href=#inquiry>INQUIRY</a></li>
+ <li>
+ <a href="cart.html" style="position: relative;">
+ CART
+ <span class="cart-badge" id="cart-badge">0</span>
+ </a>
+ </li>
+ <li><button class=login-btn>LOG IN</button></li>
+ </ul>
+ </nav>
+
+ <section class=product-detail-section>
+ <div class=product-detail-container>
+ <div class=product-image-wrapper>
+ <img id=product-image src=pic/berry.jpg alt=Product>
+ </div>
+
+ <div class=product-info>
+ <h1 class=product-title id=product-title>BERRY FRUIT VANILLA</h1>
+ <p class=product-subtitle id=product-subtitle>STRAWBERRY & BERRY COMPOTE</p>
+ <p class=product-price id=product-price>600.000VND</p>
+
+ <div class=product-description id=product-description>
+ <ul>
+<liv>Vanilla Mousse Cake with Berries</liv> 
+<p> Size: 18cm, height 4cm</p>
+<p>The light sour taste of Berries (strawberries, raspberries, etc.) combined with the mild sweetness of vanilla cream, the cake base is like a lemon orange cookie, slightly crispy.</p>
+<p>Suitale for customers who like sour food. Not suitable for children because the cake base is crispy and slightly sour.</p>
+ </ul>
+ </div>
+
+ <button class=add-to-cart-btn>Add to cart</button>
+ </div>
+ </div>
+ </section>
+
+ <footer class=contact-footer>
+ <div class=footer-container>
+ <div class=footer-left>
+ <h3 class=footer-brand>Hamt Pastry</h3>
+ <div class=social-media>
+ <a href=https://facebook.com target=_blank class=social-icon title=Facebook>
+ <svg width=24 height=24 viewBox=0 0 24 24 fill=currentColor>
+ <path d=M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z/>
+ </svg>
+ </a>
+ <a href=https://linkedin.com target=_blank class=social-icon title=LinkedIn>
+ <svg width=24 height=24 viewBox=0 0 24 24 fill=currentColor>
+ <path d=M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z/>
+ </svg>
+ </a>
+ <a href=https://youtube.com target=_blank class=social-icon title=YouTube>
+ <svg width=24 height=24 viewBox=0 0 24 24 fill=currentColor>
+ <path d=M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z/>
+ </svg>
+ </a>
+ <a href=https://instagram.com target=_blank class=social-icon title=Instagram>
+ <svg width=24 height=24 viewBox=0 0 24 24 fill=currentColor>
+ <path d=M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m0 2.25c5.385 0 9.75 4.365 9.75 9.75s-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12 6.615 2.25 12 2.25m3.662-1.162a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-7.162 1.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9m0 1.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6/>
+ </svg>
+ </a>
+ </div>
+ </div>
+
+ <div class=footer-right>
+ <div class=contact-info>
+ <div class=contact-item>
+ <svg class=contact-icon width=20 height=20 viewBox=0 0 24 24 fill=none stroke=currentColor stroke-width=2>
+ <path d=M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z></path>
+ <circle cx=12 cy=10 r=3></circle>
+ </svg>
+ <span>68 Van Cao, Ba Dinh, Ha Noi</span>
+ </div>
+ <div class=contact-item>
+ <svg class=contact-icon width=20 height=20 viewBox=0 0 24 24 fill=none stroke=currentColor stroke-width=2>
+ <rect x=2 y=4 width=20 height=16 rx=2></rect>
+ <path d=m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7></path>
+ </svg>
+ <span>hamt.pastry@gmail.com</span>
+ </div>
+ <div class=contact-item>
+ <svg class=contact-icon width=20 height=20 viewBox=0 0 24 24 fill=none stroke=currentColor stroke-width=2>
+ <path d=M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z></path>
+ </svg>
+ <span>0982762656</span>
+ </div>
+ </div>
+ </div>
+ </div>
+ </footer>
+
+ <script>
+ function setActiveNav() {
+ const navLinks = document.querySelectorAll('.nav-links a');
+ const currentPage = window.location.pathname.split('/').pop() || 'product-detail.html';
+ 
+ navLinks.forEach(link => {
+ link.classList.remove('active');
+ const href = link.getAttribute('href');
+ 
+ if (href.includes('products.html') || href.includes('product-detail.html')) {
+ if (currentPage === 'products.html' || currentPage === 'product-detail.html') {
+ link.classList.add('active');
+ }
+ }
+ });
+ }
+
+ function loadProductDetail() {
+ const params = new URLSearchParams(window.location.search);
+ const productName = params.get('name');
+ const productSubtitle = params.get('subtitle');
+ const productPrice = params.get('price');
+ const productImage = params.get('image');
+ const productDescription = params.get('description');
+
+ if (productName) {
+ document.getElementById('product-title').textContent = productName;
+ }
+ if (productSubtitle) {
+ document.getElementById('product-subtitle').textContent = productSubtitle;
+ }
+ if (productPrice) {
+ document.getElementById('product-price').textContent = productPrice;
+ }
+ if (productImage) {
+ document.getElementById('product-image').src = productImage;
+ }
+ if (productDescription) {
+ try {
+ const descArray = JSON.parse(productDescription);
+ const descHtml = '<ul>' + descArray.map(item => <li></li>).join('') + '</ul>';
+ document.getElementById('product-description').innerHTML = descHtml;
+ } catch (e) {
+ document.getElementById('product-description').textContent = productDescription;
+ }
+ }
+ }
+
+ // ============================================
+// TOAST NOTIFICATION SYSTEM
+// ============================================
+
+function showToast(productName, productPrice, productImage) {
+    // Create toast HTML
+    const toastHTML = `
+        <div class="toast-notification" id="cart-toast">
+            <div class="toast-header">
+                <div class="toast-icon">✓</div>
+                <div class="toast-title">Added to cart!</div>
+                <button class="toast-close" onclick="closeToast()">×</button>
+            </div>
+            <div class="toast-body">
+                <img src="${productImage}" alt="${productName}" class="toast-product-image">
+                <div class="toast-product-info">
+                    <div class="toast-product-name">${productName}</div>
+                    <div class="toast-product-price">${productPrice}</div>
+                </div>
+            </div>
+            <div class="toast-actions">
+                <button class="toast-btn toast-btn-secondary" onclick="closeToast()">
+                    Continue Shopping
+                </button>
+                <button class="toast-btn toast-btn-primary" onclick="goToCart()">
+                View Cart →
+                </button>
+            </div>
+        </div>
+    `;
+    
+    // Insert toast into container
+    const container = document.getElementById('toast-container');
+    container.innerHTML = toastHTML;
+    
+    // Show toast with animation
+    setTimeout(() => {
+        document.getElementById('cart-toast').classList.add('show');
+    }, 100);
+    
+    // Auto hide after 5 seconds
+    setTimeout(() => {
+        closeToast();
+    }, 5000);
+}
+
+function closeToast() {
+    const toast = document.getElementById('cart-toast');
+    if (toast) {
+        toast.classList.remove('show');
+        toast.classList.add('hide');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }
+}
+
+function goToCart() {
+    window.location.href = 'cart.html';
+}
+
+// ============================================
+// ADD TO CART FUNCTION (UPDATED)
+// ============================================
+
+function addToCart() {
+    const btn = document.querySelector('.add-to-cart-btn');
+    
+    // 1. Change button to loading state
+    btn.classList.add('loading');
+    const originalText = btn.textContent;
+    btn.textContent = 'Adding...';
+    
+    // 2. Get product data from URL
+    const params = new URLSearchParams(window.location.search);
+    const productName = params.get('name');
+    const productPrice = params.get('price');
+    const productImage = params.get('image');
+    
+    const cartItem = {
+        name: productName,
+        price: productPrice,
+        image: productImage,
+        quantity: 1
+    };
+    
+    // 3. Simulate async operation (500ms delay)
+    setTimeout(() => {
+        // Get existing cart
+        let cart = localStorage.getItem('cart');
+        cart = cart ? JSON.parse(cart) : [];
+        
+        // Check if item already exists
+        const existingItem = cart.find(item => item.name === productName);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push(cartItem);
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // 4. Change button to success state
+        btn.classList.remove('loading');
+        btn.classList.add('success');
+        btn.textContent = 'Added ✓';
+        
+        // 5. Update cart badge
+        updateCartBadge();
+        
+        // 6. Redirect to cart page immediately
+        setTimeout(() => {
+            window.location.href = 'cart.html';
+        }, 800);
+        
+    }, 500);
+}
+// ============================================
+// EVENT LISTENERS
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    setActiveNav();
+    loadProductDetail();
+    updateCartBadge();
+});
+
+document.querySelector('.add-to-cart-btn').addEventListener('click', addToCart);
+
+// ============================================
+// GLOBAL CART FUNCTIONS
+// ============================================
+
+// Update Cart Badge Counter
+function updateCartBadge() {
+    const badge = document.getElementById('cart-badge');
+    if (!badge) return;
+    
+    const cart = localStorage.getItem('cart');
+    const cartArray = cart ? JSON.parse(cart) : [];
+    const totalItems = cartArray.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    
+    badge.textContent = totalItems;
+    
+    if (totalItems > 0) {
+        badge.classList.remove('hidden');
+        badge.classList.add('updated');
+        setTimeout(() => badge.classList.remove('updated'), 500);
+    } else {
+        badge.classList.add('hidden');
+    }
+}
+</script>
+
+<!-- Toast Notification Container -->
+<div id="toast-container"></div>
+
+</body>
+</html>

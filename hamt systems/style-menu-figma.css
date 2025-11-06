@@ -1,0 +1,493 @@
+﻿/* MENU Section - Updated for Figma Design */
+.menu {
+    background-color: #d4c4b0;
+    padding: 60px 50px;
+}
+
+.menu-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.menu-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.menu-item {
+    text-align: center;
+    background: white;
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.menu-item-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.menu-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover .menu-item-image img {
+    transform: scale(1.05);
+}
+
+.menu-item h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin: 15px 0 8px 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 0 15px;
+}
+
+.menu-item .price {
+    font-size: 12px;
+    color: #999;
+    font-weight: 400;
+    margin-bottom: 15px;
+    padding: 0 15px;
+}
+
+.menu-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.more-btn {
+    background-color: #8b7355;
+    color: white;
+    padding: 12px 45px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.more-btn:hover {
+    background-color: #6d5a47;
+}
+
+.more-btn span {
+    margin-left: 8px;
+}
+
+/* NEW ARRIVALS Section - Updated for Figma Design */
+.new-arrivals {
+    background-color: #f5f1ed;
+    padding: 0;
+}
+
+.arrivals-header {
+    text-align: center;
+    margin-bottom: 0;
+    background-color: #8b7355;
+    padding: 20px 50px;
+}
+
+.arrivals-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.arrivals-container {
+    background-color: white;
+    padding: 40px 50px;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.arrival-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.arrival-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* EVENT COLLECTION Section - Hidden by default */
+.event-collection {
+    background-color: #f5f1ed;
+    padding: 0;
+    display: none;
+    animation: slideDown 0.4s ease-out;
+}
+
+.event-collection.show {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.collection-header {
+    text-align: center;
+    padding: 40px 50px 20px;
+    background-color: #f5f1ed;
+}
+
+.collection-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #8b7355;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.collection-container {
+    padding: 40px 50px;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.collection-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.collection-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.collection-left .collection-image {
+    order: -1;
+}
+
+.collection-right .collection-image {
+    order: 1;
+}
+
+.collection-image {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.collection-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.collection-item:hover .collection-image img {
+    transform: scale(1.05);
+}
+
+.collection-content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #8b7355;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.collection-content .product-subtitle {
+    font-size: 12px;
+    color: #999;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.collection-content .product-description {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+}
+
+.arrival-left .arrival-image {
+    order: 1;
+}
+
+.arrival-left .arrival-content {
+    order: 2;
+}
+
+.arrival-right .arrival-image {
+    order: 2;
+}
+
+.arrival-right .arrival-content {
+    order: 1;
+}
+
+.arrival-image {
+    width: 100%;
+    height: 280px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #e8ddd0;
+}
+
+.arrival-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.arrival-content {
+    background-color: #e8ddd0;
+    padding: 25px 20px;
+    border-radius: 8px;
+}
+
+.arrival-content h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #8b7355;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.product-subtitle {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.product-description {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.arrivals-footer {
+    display: flex;
+    justify-content: center;
+    padding: 30px 50px;
+    background-color: #f5f1ed;
+}
+
+.view-more-btn {
+    background-color: #333;
+    color: white;
+    padding: 12px 45px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.view-more-btn:hover {
+    background-color: #555;
+}
+
+/* CONTACT/FOOTER Section */
+.contact-footer {
+    background-color: #d4c4b0;
+    padding: 40px 50px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-brand {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.social-media {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #8b7355;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.social-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.contact-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: #8b7355;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .arrival-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .menu, .new-arrivals {
+        padding: 40px 20px;
+    }
+
+    .arrivals-container {
+        padding: 30px 20px;
+    }
+
+    .arrivals-header {
+        padding: 20px;
+    }
+
+    .arrivals-footer {
+        padding: 30px 20px;
+    }
+
+    .contact-footer {
+        padding: 30px 20px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .social-media {
+        justify-content: flex-start;
+    }
+
+    .collection-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .collection-container {
+        padding: 30px 20px;
+    }
+
+    .collection-header {
+        padding: 20px;
+    }
+
+    .collection-header h2 {
+        font-size: 20px;
+    }
+
+    .collection-image {
+        height: 200px;
+    }
+}

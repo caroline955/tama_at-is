@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mid-Autumn Festival Collection - HAMT Pastry</title>
+    <link rel="stylesheet" href="style-menu-figma.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f1ed;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #f5f1ed;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: #8b7355;
+        }
+
+        .nav-links a.active {
+            color: #8b7355;
+            font-weight: 700;
+            border-bottom: 3px solid #8b7355;
+            padding-bottom: 5px;
+        }
+
+        .login-btn {
+            background-color: #8b7355;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #6d5a47;
+        }
+
+        /* Collection Section */
+        .collection-section {
+            padding: 60px 50px;
+            background-color: #f5f1ed;
+        }
+
+        .collection-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .collection-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #8b7355;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .collection-items {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .collection-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background-color: #e8ddd0;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .collection-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .collection-item.featured {
+            border: 4px solid #0066cc;
+            background-color: #f5f5f5;
+        }
+
+        .collection-item-image {
+            width: 100%;
+            height: 280px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        .collection-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .collection-item:hover .collection-item-image img {
+            transform: scale(1.05);
+        }
+
+        .collection-item-content {
+            padding: 20px;
+        }
+
+        .collection-item-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #8b7355;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .collection-item-description {
+            font-size: 13px;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .collection-item-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .collection-item-description li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .collection-item-description li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #8b7355;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .collection-section {
+                padding: 40px 20px;
+            }
+
+            .collection-header h1 {
+                font-size: 24px;
+            }
+
+            .collection-item {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .collection-item-image {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .collection-item {
+                gap: 30px;
+            }
+        }
+    /* Cart Badge Counter */
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 7px;
+    font-size: 11px;
+    font-weight: bold;
+    min-width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    animation: none;
+}
+
+.cart-badge.updated {
+    animation: bounceIn 0.5s ease;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.5); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.cart-badge.hidden {
+    display: none;
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo" onclick="window.location.href='home web.html'">HAMT PASTRY</div>
+        <ul class="nav-links">
+            <li><a href="home web.html#home">HOME</a></li>
+            <li><a href="products.html">PRODUCT</a></li>
+            <li><a href="#how-to-buy">HOW TO BUY</a></li>
+            <li><a href="#membership">MEMBERSHIP</a></li>
+            <li><a href="#inquiry">INQUIRY</a></li>
+            <li>
+    <a href="cart.html" style="position: relative;">
+        CART
+        <span class="cart-badge" id="cart-badge">0</span>
+    </a>
+</li>
+            <li><button class="login-btn">LOG IN</button></li>
+        </ul>
+    </nav>
+
+    <!-- Collection Section -->
+    <section class="collection-section">
+        <div class="collection-header">
+            <h1>MID-AUTUMN FESTIVAL COLLECTION</h1>
+        </div>
+
+        <div class="collection-items">
+            <!-- Product 1 - Featured -->
+            <div class="collection-item featured">
+                <div class="collection-item-image">
+                    <img src="pic/gift set a moon.png" alt="Gift Set Once Upon A Moon">
+                </div>
+                <div class="collection-item-content">
+                    <div class="collection-item-name">GIFT SET ONCE UPON A MOON</div>
+                    <div class="collection-item-description">
+                        <ul>
+                            <li>Gifted of 4 Mooncakes - Once Upon A Moon</li>
+                            <li>Includes: Passion Fruit Entremet, Mango Coconut Entremet</li>
+                            <li>Mooncake Flavor: Matcha & Coconut Entremet</li>
+                            <li>Mooncake: Pineapple & Coconut Entremet</li>
+                            <li>Perfect for sharing and celebrating</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="collection-item">
+                <div class="collection-item-image">
+                    <img src="pic/blink blink pop.png" alt="Blink Blink Pop">
+                </div>
+                <div class="collection-item-content">
+                    <div class="collection-item-name">BLINK BLINK POP</div>
+                    <div class="collection-item-description">
+                        <ul>
+                            <li>MANGO CHEESE PASSION FRUIT ENTREMET CAKE</li>
+                            <li>Mango Cheese layer with Passion Fruit filling</li>
+                            <li>The main flavor is Mango, slightly sour from Passion Fruit and integrated from the Cheese layer</li>
+                            <li>Topped with Mango jelly, passion entremet cream layer, and Passion Fruit jelly layer, creating a cool dreams of Tropical Fruits and Mango</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="collection-item">
+                <div class="collection-item-image">
+                    <img src="pic/moonkeeper.png" alt="Moonkeeper">
+                </div>
+                <div class="collection-item-content">
+                    <div class="collection-item-name">MOONKEEPER</div>
+                    <div class="collection-item-description">
+                        <ul>
+                            <li>PINEAPPLE & COCONUT ENTREMET CAKE</li>
+                            <li>Soft sponge cake for 12 people</li>
+                            <li>Pineapple and Coconut flavor</li>
+                            <li>The inside is slightly sour from Pineapple cooked with Vanilla, and finally the Vanilla base layer is balanced</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="collection-item">
+                <div class="collection-item-image">
+                    <img src="pic/moonie roar.png" alt="Moonie Roar">
+                </div>
+                <div class="collection-item-content">
+                    <div class="collection-item-name">MOONIE ROAR</div>
+                    <div class="collection-item-description">
+                        <ul>
+                            <li>MATCHA CAKE</li>
+                            <li>Matcha Flavored Genoise Cake</li>
+                            <li>Soft sponge cake for 12 people</li>
+                            <li>The flavor of the cake is in harmony with the soft and moist cake, bringing the freshness of Matcha to the taste</li>
+                            <li>Topped with a layer of sweet Matcha Cream, the Matcha flavor is balanced with a layer of sweet Matcha Cream</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="collection-item">
+                <div class="collection-item-image">
+                    <img src="pic/shining star.png" alt="Shining Star">
+                </div>
+                <div class="collection-item-content">
+                    <div class="collection-item-name">SHINING STAR</div>
+                    <div class="collection-item-description">
+                        <ul>
+                            <li>ENTREMET TIRAMISU CAKE</li>
+                            <li>Cold cream cake (Mousse), Tiramisu Flavor</li>
+                            <li>Combination of Coffee cake base with soft Mascarpone cheese cream layer</li>
+                            <li>Inside is a layer of soft Caramel filling with Arabica</li>
+                            <li>The cake has a strong aroma of Coffee & Caramel, the cake layer is soft and creamy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Set active navigation link
+        function setActiveNav() {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const currentPage = window.location.pathname.split('/').pop() || 'collection.html';
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+
+                // Check if link matches current page
+                if (href.includes('collection.html')) {
+                    if (currentPage === 'collection.html') {
+                        link.classList.add('active');
+                    }
+                }
+            });
+        }
+// Update Cart Badge Counter
+function updateCartBadge() {
+    const badge = document.getElementById('cart-badge');
+    if (!badge) return;
+    
+    const cart = localStorage.getItem('cart');
+    const cartArray = cart ? JSON.parse(cart) : [];
+    const totalItems = cartArray.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    
+    badge.textContent = totalItems;
+    
+    if (totalItems > 0) {
+        badge.classList.remove('hidden');
+        badge.classList.add('updated');
+        setTimeout(() => badge.classList.remove('updated'), 500);
+    } else {
+        badge.classList.add('hidden');
+    }
+}
+        // Run on page load
+        document.addEventListener('DOMContentLoaded', function() {
+    setActiveNav();
+    updateCartBadge();
+});
+    </script>
+</body>
+</html>
