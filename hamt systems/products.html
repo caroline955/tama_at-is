@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - HAMT Pastry</title>
     <link rel="stylesheet" href="style-menu-figma.css">
+    <link href="pic/Nude and Black  Modern Bakery Logo.pdf" rel="icon" type="image/x-icon"/>
     <style>
         * {
             margin: 0;
@@ -251,7 +252,7 @@
         <ul class="nav-links">
             <li><a href="home web.html#home">HOME</a></li>
             <li><a href="products.html">PRODUCT</a></li>
-            <li><a href="#how-to-buy">HOW TO BUY</a></li>
+            <li><a href="how-to-buy.html">HOW TO BUY</a></li>
             <li><a href="#membership">MEMBERSHIP</a></li>
             <li><a href="#inquiry">INQUIRY</a></li>
             <li>
@@ -401,17 +402,16 @@
         }
 
         // Navigate to product detail page
-        function goToProductDetail(name, subtitle, price, image, description) {
-            const descriptionJson = JSON.stringify(description);
-            const params = new URLSearchParams({
-                name: name,
-                subtitle: subtitle,
-                price: price,
-                image: image,
-                description: descriptionJson
-            });
-            window.location.href = `product-detail.html?${params.toString()}`;
-        }
+function goToProductDetail(name, subtitle, price, image, description) {
+    const params = new URLSearchParams({
+        name: name,
+        subtitle: subtitle,
+        price: price,
+        image: image,
+        description: JSON.stringify(description) // Convert array to JSON string before passing to URL params
+    });
+    window.location.href = `product-detail.html?${params.toString()}`;
+}
         // Update Cart Badge Counter
 function updateCartBadge() {
     const badge = document.getElementById('cart-badge');

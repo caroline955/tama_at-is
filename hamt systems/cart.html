@@ -487,7 +487,7 @@
  <ul class=nav-links>
  <li><a href=home web.html#home>HOME</a></li>
  <li><a href=products.html>PRODUCT</a></li>
- <li><a href=#how-to-buy>HOW TO BUY</a></li>
+ <li><a href=how-to-buy.html>HOW TO BUY</a></li>
  <li><a href=#membership>MEMBERSHIP</a></li>
  <li><a href=#inquiry>INQUIRY</a></li>
  <li>
@@ -584,7 +584,7 @@
  </footer>
 
  <script>
- // Cart data stored in localStorage (Thêm dòng này)
+ // Cart data stored in localStorage 
 function getCart() {
     const cart = localStorage.getItem('cart');
     return cart ? JSON.parse(cart) : [];
@@ -680,7 +680,7 @@ function setActiveNav() {
 document.addEventListener('DOMContentLoaded', function() {
     renderCart();
     setActiveNav();
-    updateCartBadge(); // Thêm dòng này
+    updateCartBadge();
 });
 
 document.querySelector('.checkout-btn').addEventListener('click', function() {
