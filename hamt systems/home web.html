@@ -261,20 +261,25 @@
 <body>
     <!-- Navigation -->
 <nav>
-    <div class="logo">HAMT PASTRY</div>
+    <div class="logo" onclick="window.location.href='home web.html'">HAMT PASTRY</div>
+    
     <ul class="nav-links">
         <li><a href="home web.html">HOME</a></li>
-        <li><a href="products.html">PRODUCT</a></li>
+        
+        <li><a href="products.html">PRODUCT</a></li> 
+        
         <li><a href="how-to-buy.html">HOW TO BUY</a></li>
-        <li><a href="#membership">MEMBERSHIP</a></li>
-        <li><a href="#inquiry">INQUIRY</a></li>
+        <li><a href="membership.html">MEMBERSHIP</a></li>
+        <li><a href="inquiry.html">INQUIRY</a></li>
+        
         <li>
             <a href="cart.html" style="position: relative;">
                 CART
                 <span class="cart-badge" id="cart-badge">0</span>
             </a>
         </li>
-        <li><button class="login-btn">LOG IN</button></li>
+        
+        <li><button class="login-btn" onclick="window.location.href='login.html'">LOG IN</button></li>
     </ul>
 </nav>
 
@@ -383,6 +388,8 @@
                 <p class="product-description">Fresh Matcha flavor</p>
             </div>
         </div>
+            
+    
     </div>
 
     <div class="arrivals-footer">
@@ -472,6 +479,53 @@ function updateCartBadge() {
 document.addEventListener('DOMContentLoaded', function() {
     updateCartBadge();
 });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. TỰ ĐỘNG SET ACTIVE MENU
+        // Lấy tên file hiện tại từ URL (ví dụ: membership.html)
+        // decodeURIComponent để xử lý các ký tự đặc biệt như khoảng trắng (%20) trong "home web.html"
+        const currentPage = decodeURIComponent(window.location.pathname.split("/").pop());
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        navLinks.forEach(link => {
+            // Lấy đường dẫn trong thẻ href
+            const href = link.getAttribute('href');
+            
+            // Nếu href trùng với tên file hiện tại -> Thêm class active
+            if (href === currentPage) {
+                link.classList.add('active');
+            }
+
+            // TRƯỜNG HỢP ĐẶC BIỆT:
+            // Nếu đang ở trang chi tiết (product-detail.html) hoặc collection.html
+            // Thì vẫn bôi đậm mục "PRODUCT" (products.html)
+            if ((currentPage === 'product-detail.html' || currentPage === 'collection.html') && href === 'products.html') {
+                link.classList.add('active');
+            }
+             // Nếu đang ở trang login, reset-password... thì không cần bôi đậm gì cả (hoặc bôi đậm Login nếu muốn)
+        });
+
+        // 2. CẬP NHẬT SỐ LƯỢNG GIỎ HÀNG (CART BADGE)
+        updateCartBadge();
+    });
+
+    function updateCartBadge() {
+        const badge = document.getElementById('cart-badge');
+        if (!badge) return;
+        
+        const cart = localStorage.getItem('cart');
+        const cartArray = cart ? JSON.parse(cart) : [];
+        const totalItems = cartArray.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        
+        badge.textContent = totalItems;
+        
+        if (totalItems > 0) {
+            badge.classList.remove('hidden');
+        } else {
+            badge.classList.add('hidden');
+        }
+    }
 </script>
 </body>
 </html>

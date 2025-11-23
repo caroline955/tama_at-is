@@ -506,26 +506,28 @@
  </style>
 </head>
 <body>
- <nav>
-<div class="logo" onclick="window.location.href='home web.html'">
-HAMT PASTRY
-</div>
- <ul class=nav-links>
- <li><a href=home web.html#home>HOME</a></li>
- <li><a href=products.html class=active>PRODUCT</a></li>
- <li><a href=how-to-buy.html>HOW TO BUY</a></li>
- <li><a href=#membership>MEMBERSHIP</a></li>
- <li><a href=#inquiry>INQUIRY</a></li>
- <li>
- <a href="cart.html" style="position: relative;">
- CART
- <span class="cart-badge" id="cart-badge">0</span>
- </a>
- </li>
- <li><button class=login-btn>LOG IN</button></li>
- </ul>
- </nav>
-
+<nav>
+    <div class="logo" onclick="window.location.href='home web.html'">HAMT PASTRY</div>
+    
+    <ul class="nav-links">
+        <li><a href="home web.html">HOME</a></li>
+        
+        <li><a href="products.html">PRODUCT</a></li> 
+        
+        <li><a href="how-to-buy.html">HOW TO BUY</a></li>
+        <li><a href="membership.html">MEMBERSHIP</a></li>
+        <li><a href="inquiry.html">INQUIRY</a></li>
+        
+        <li>
+            <a href="cart.html" style="position: relative;">
+                CART
+                <span class="cart-badge" id="cart-badge">0</span>
+            </a>
+        </li>
+        
+        <li><button class="login-btn" onclick="window.location.href='login.html'">LOG IN</button></li>
+    </ul>
+</nav>
  <section class=product-detail-section>
  <div class=product-detail-container>
  <div class=product-image-wrapper>
@@ -719,34 +721,34 @@ function goToCart() {
 // ADD TO CART FUNCTION (UPDATED)
 // ============================================
 
+// Trong file product-detail.html
+
 function addToCart() {
     const btn = document.querySelector('.add-to-cart-btn');
     
-    // 1. Change button to loading state
+    // 1. Hiệu ứng loading
     btn.classList.add('loading');
-    const originalText = btn.textContent;
     btn.textContent = 'Adding...';
     
-    // 2. Get product data from URL
-    const params = new URLSearchParams(window.location.search);
-    const productName = params.get('name');
-    const productPrice = params.get('price');
-    const productImage = params.get('image');
+    // 2. LẤY DỮ LIỆU TỪ GIAO DIỆN (Thay vì lấy từ URL)
+    // Cách này đảm bảo lấy đúng cái người dùng đang nhìn thấy
+    const productName = document.getElementById('product-title').innerText;
+    const productPrice = document.getElementById('product-price').innerText; // Ví dụ: 600.000VND
+    const productImage = document.getElementById('product-image').src;
     
     const cartItem = {
         name: productName,
-        price: productPrice,
+        price: productPrice, 
         image: productImage,
         quantity: 1
     };
     
-    // 3. Simulate async operation (500ms delay)
+    // 3. Lưu vào LocalStorage
     setTimeout(() => {
-        // Get existing cart
         let cart = localStorage.getItem('cart');
         cart = cart ? JSON.parse(cart) : [];
         
-        // Check if item already exists
+        // Kiểm tra sản phẩm đã có trong giỏ chưa
         const existingItem = cart.find(item => item.name === productName);
         if (existingItem) {
             existingItem.quantity += 1;
@@ -754,21 +756,19 @@ function addToCart() {
             cart.push(cartItem);
         }
         
-        // Save to localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
         
-        // 4. Change button to success state
+        // 4. Thông báo thành công
         btn.classList.remove('loading');
         btn.classList.add('success');
         btn.textContent = 'Added ✓';
         
-        // 5. Update cart badge
         updateCartBadge();
         
-        // 6. Redirect to cart page immediately
+        // 5. CHUYỂN HƯỚNG SANG CART.HTML
         setTimeout(() => {
             window.location.href = 'cart.html';
-        }, 800);
+        }, 500); // Chờ 0.5s để người dùng thấy chữ "Added" rồi mới chuyển
         
     }, 500);
 }
@@ -811,6 +811,52 @@ function updateCartBadge() {
 
 <!-- Toast Notification Container -->
 <div id="toast-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. TỰ ĐỘNG SET ACTIVE MENU
+        // Lấy tên file hiện tại từ URL (ví dụ: membership.html)
+        // decodeURIComponent để xử lý các ký tự đặc biệt như khoảng trắng (%20) trong "home web.html"
+        const currentPage = decodeURIComponent(window.location.pathname.split("/").pop());
+        const navLinks = document.querySelectorAll('.nav-links a');
 
+        navLinks.forEach(link => {
+            // Lấy đường dẫn trong thẻ href
+            const href = link.getAttribute('href');
+            
+            // Nếu href trùng với tên file hiện tại -> Thêm class active
+            if (href === currentPage) {
+                link.classList.add('active');
+            }
+
+            // TRƯỜNG HỢP ĐẶC BIỆT:
+            // Nếu đang ở trang chi tiết (product-detail.html) hoặc collection.html
+            // Thì vẫn bôi đậm mục "PRODUCT" (products.html)
+            if ((currentPage === 'product-detail.html' || currentPage === 'collection.html') && href === 'products.html') {
+                link.classList.add('active');
+            }
+             // Nếu đang ở trang login, reset-password... thì không cần bôi đậm gì cả (hoặc bôi đậm Login nếu muốn)
+        });
+
+        // 2. CẬP NHẬT SỐ LƯỢNG GIỎ HÀNG (CART BADGE)
+        updateCartBadge();
+    });
+
+    function updateCartBadge() {
+        const badge = document.getElementById('cart-badge');
+        if (!badge) return;
+        
+        const cart = localStorage.getItem('cart');
+        const cartArray = cart ? JSON.parse(cart) : [];
+        const totalItems = cartArray.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        
+        badge.textContent = totalItems;
+        
+        if (totalItems > 0) {
+            badge.classList.remove('hidden');
+        } else {
+            badge.classList.add('hidden');
+        }
+    }
+</script>
 </body>
 </html>
