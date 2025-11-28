@@ -1,0 +1,34 @@
+,TOE Factors,,,,,,A. Technical context ,,,
+,Bối cảnh,Biến,Câu hỏi (Ví dụ về nội dung),Nguồn (RQ),,,STT,Câu hỏi,Lựa chọn/Phương thức trả lời,
+,Công nghệ,Lợi thế Tương đối (RA),"Green IS giúp cải thiện hiệu suất, chất lượng dịch vụ của DN hơn so với đối thủ.",RQ1a 22,,,1,Quy mô nhân sự hiện tại của doanh nghiệp?,"[Dropdown/Chọn một] $10-50$, $51-100$, $101-250$ người, Khác",
+,,Tính Tương thích (COM),Green IS phù hợp với cơ sở hạ tầng CNTT và quy trình kinh doanh hiện tại của DN.,RQ1b 23,,,2,Lĩnh vực hoạt động chính của doanh nghiệp?,[Chọn một] Sản xuất; Thương mại/Dịch vụ; CNTT/Phần mềm; Khác,
+,,Tính Phức tạp (CPX),Green IS khó hiểu và khó triển khai trong DN.,RQ1c 24,,,3,Vị trí của người trả lời trong doanh nghiệp?,[Chọn một] Chủ DN/Giám đốc; Quản lý cấp cao; Quản lý IT; Khác,
+,Tổ chức,Hỗ trợ Lãnh đạo Cấp cao (TMS),Lãnh đạo cấp cao cam kết và ưu tiên nguồn lực cho các sáng kiến Green IS.,RQ2a 25,,,4,Doanh nghiệp đã/đang có kế hoạch áp dụng Green IS (Hệ thống Thông tin Xanh) chưa?,[Chọn một] Đã áp dụng; Đang có kế hoạch áp dụng; Chưa áp dụng và không có kế hoạch,
+,,Nguồn lực Tổ chức (OR),DN có đủ nguồn vốn và thời gian để đầu tư vào Green IS.,RQ2b 26,,,,,,
+,,Năng lực CNTT (ITC),Nhân viên DN có đủ kỹ năng và kiến thức kỹ thuật để vận hành Green IS.,RQ2c 27,,,B. Organaization context ,,,
+,,Văn hóa Môi trường (EC),DN có văn hóa thúc đẩy sự bền vững và trách nhiệm môi trường.,RQ2d 28,,,Mã,Biến,Nhận định,Thang đo (1-5)
+,Môi trường,Áp lực Quy định (REG),DN chịu áp lực phải tuân thủ nghiêm ngặt các luật và quy định môi trường của Chính phủ.,RQ3a 29,,,RA1,Lợi thế Tương đối (RA),Green IS giúp doanh nghiệp tăng lợi thế cạnh tranh so với đối thủ.,[1] [2] [3] [4] [5]
+,,Áp lực Cạnh tranh (CP),"Đối thủ cạnh tranh của DN đang áp dụng Green IS, tạo áp lực cho DN phải làm theo.",RQ3b 30,,,RA2,(RA),"Green IS mang lại hiệu suất hoạt động cao hơn (tốc độ, độ chính xác) so với hệ thống hiện tại.",[1] [2] [3] [4] [5]
+,,Áp lực Khách hàng (CUS),Khách hàng/đối tác yêu cầu DN thực hiện các hoạt động kinh doanh bền vững.,RQ3c 31,,,COM1,Tính Tương thích (COM),Green IS phù hợp với các quy trình kinh doanh và mục tiêu bền vững hiện có của doanh nghiệp.,[1] [2] [3] [4] [5]
+,,Hỗ trợ Chính phủ (GS),"Chính phủ cung cấp đủ trợ cấp, ưu đãi thuế hoặc chương trình hỗ trợ cho việc áp dụng Green IS.",RQ3d 32,,,COM2,(COM),"Green IS dễ dàng tích hợp với các hệ thống CNTT (ERP, CRM) đang được sử dụng.",[1] [2] [3] [4] [5]
+,,,,,,,CPX1,Tính Phức tạp (CPX),Green IS đòi hỏi quá nhiều kiến thức chuyên môn để triển khai và vận hành.,[1] [2] [3] [4] [5]
+,Mediating Variable,,,,,,CPX2,(CPX),Các giải pháp Green IS hiện tại quá phức tạp so với nhu cầu thực tế của SMEs.,[1] [2] [3] [4] [5]
+,,Biến,Câu hỏi (Ví dụ về nội dung),Nguồn (RQ),,,,,,
+,,Nhận thức Môi trường (EA),Lãnh đạo DN nhận thức rõ ràng về tác động môi trường từ hoạt động kinh doanh.,RQ4a 33,,,C.Environment context ,,,
+,,,Lãnh đạo DN coi việc bảo vệ môi trường là yếu tố sống còn cho sự phát triển lâu dài của DN.,RQ4b 34,,,Mã,Biến,Nhận định,Thang đo (1-5)
+,,,,,,,TMS1,Hỗ trợ Lãnh đạo (TMS),Lãnh đạo cấp cao cam kết và ưu tiên các sáng kiến Green IS.,[1] [2] [3] [4] [5]
+,Dependent Variables,,,,,,TMS2,(TMS),Lãnh đạo cấp cao cung cấp đủ nguồn lực tài chính cho việc mua sắm và triển khai Green IS.,[1] [2] [3] [4] [5]
+,Biến,Kích thước,Câu hỏi (Ví dụ về nội dung),Nguồn (RQ),,,OR1,Nguồn lực Tổ chức (OR),Doanh nghiệp có nguồn vốn và ngân sách đủ để đầu tư vào Green IS.,[1] [2] [3] [4] [5]
+,Áp dụng Green IS (GISA),"Ý định (AI), Sử dụng (AU), Hiệu quả (EU)",DN đang có kế hoạch/đã triển khai các ứng dụng Green IS.,RQ4a 35,,,ITC1,Năng lực CNTT (ITC),Đội ngũ nhân viên CNTT của doanh nghiệp có đủ kỹ năng và chuyên môn để quản lý Green IS.,[1] [2] [3] [4] [5]
+,,,DN đã sử dụng Green IS trong các hoạt động đo lường/quản lý/giảm thiểu tác động môi trường.,RQ4a 36,,,EC1,Văn hóa Môi trường (EC),Doanh nghiệp có văn hóa thúc đẩy sự bền vững và hành vi có trách nhiệm với môi trường.,[1] [2] [3] [4] [5]
+,Hiệu suất Bền vững (SBP),Môi trường (ENP),Việc áp dụng Green IS giúp DN giảm lượng khí thải CO2 / tiêu thụ năng lượng/ tài nguyên.,RQ5a 37,,,,,,
+,,Kinh tế (ECP),Việc áp dụng Green IS giúp DN tăng hiệu quả chi phí hoạt động / ROI / doanh thu.,RQ5b 38,,,D. Nhận thức môi trường ,,,
+,,Xã hội (SP),Việc áp dụng Green IS giúp cải thiện uy tín công ty / sự hài lòng của nhân viên / quan hệ cộng đồng.,RQ5c 39,,,Mã,Biến,Nhận định,Thang đo (1-5)
+,,,,,,,EA1,Nhận thức Môi trường (EA),Lãnh đạo và nhân viên DN nhận thức rõ ràng về tác động tiêu cực của hoạt động kinh doanh lên môi trường.,[1] [2] [3] [4] [5]
+,,,,,,,EA2,(EA),Việc bảo vệ môi trường được coi là một trong những ưu tiên chiến lược của doanh nghiệp.,[1] [2] [3] [4] [5]
+,,,,,,,,,,
+,,,,,,,E. Adoption green is,,,
+,,,,,,,Mã,Kích thước,Nhận định,Thang đo (1-5)
+,,,,,,,AI1,Ý định Áp dụng (AI),Doanh nghiệp đang có kế hoạch rõ ràng để triển khai Green IS trong 1-2 năm tới (nếu chưa áp dụng).,[1] [2] [3] [4] [5]
+,,,,,,,AU1,Mức độ Sử dụng (AU),Green IS đang được sử dụng thường xuyên trong các hoạt động quản lý năng lượng/tài nguyên.,[1] [2] [3] [4] [5]
+,,,,,,,EU1,Mức độ Hiệu quả (EU),Green IS giúp doanh nghiệp đạt được mục tiêu giảm thiểu tác động môi trường đã đề ra.,[1] [2] [3] [4] [5]
